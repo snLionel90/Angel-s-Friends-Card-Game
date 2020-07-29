@@ -64,11 +64,11 @@ h1 strong{
 }
 
 /*datos ee los contadores*/
-#datos dt{
+#data dt{
     font-weight: bold;
 }
 
-#datos dd{
+#data dd{
     display: block;
     width: 42px;
     border: 1px solid #777;
