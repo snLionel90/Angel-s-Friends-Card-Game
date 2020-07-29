@@ -4,7 +4,7 @@ var theGame = new Object(); //creando un numevo objeto
 
 //lo instanciamos
 theGame.columnas = 4; //asignamos el numero de columnas
-theGame.filas = 3; //asignamos el numero de filas
+theGame.filas = 4; //asignamos el numero de filas
 theGame.extension=".png"; //una extension para todas las imagenes
 theGame.path = "images/"; //directorio donde estan las imagenes
 theGame.pulsacion = new Array(0,0) //pulsaciones para las parejas en forma de Array
@@ -63,8 +63,8 @@ function queEmpieseJuego(){
         nUno = azar();
         nDos = azar();
         if (nDos != nUno ){ //establecemos el orden
-            nTemp = theGame.cartas[nUno]
-            theGame.cartas[nUno] = theGame.cartas[nDos]
+            nTemp = theGame.cartas[nUno];
+            theGame.cartas[nUno] = theGame.cartas[nDos];
             theGame.cartas[nDos] = nTemp;
             }
     }
@@ -75,14 +75,14 @@ function queEmpieseJuego(){
 
 // funciones varias para el juego
 function azar(){  
-    return Math.floor(Math.random()*MAX_FICH);
-
+    return Math.floor(Math.random()*MAX_FICH); //cola las imagenes de forma aleatoria
+//donde le sale de los scripts
    }
 
 //función para comprobar si se han pulsado una o dos cartas
 function soloImpar(n){
     return (n % 2 == 0 ? n : n - 1);
-}
+   }
 
 function mostrar(nFicha){
     if (!enPausa){
@@ -107,15 +107,16 @@ function sinPausa(){
     document.images[theGame.pulsacion[1]].src=theGame.path+"crux"+theGame.extension;
 
     //7volviendo a las teclas
-    theGame.pulsacion[0]=-1;
-    theGame.pulsacion[1]=-1;
+    theGame.pulsacion[0]= -1;
+    theGame.pulsacion[1]= -1;
 }
 
 function comprobacion (){
     if (enPausa || theGame.pulsacion[1]==-1){
         return; //comprobar dos teclás
+        theGame.intentos++; //uno mas pal contador
     }
-    theGame.intentos++; //uno mas pal contador
+    
 
     if(soloImpar(theGame.cartas[theGame.pulsacion[0]])== soloImpar(theGame.cartas[theGame.pulsacion[1]])){
         theGame.aciertos++; //añadimos un acierto al contador
@@ -131,18 +132,18 @@ function comprobacion (){
         enPausa=true;
         setTimeout(sinPausa,1000);
     }
-
+//muestramos loz contadores hoygan
     document.getElementById("movimientos").innerHTML=theGame.intentos;
     document.getElementById("aciertos").innerHTML=theGame.aciertos;
 }
-
+//Evento que al cargarse la ventana carga las funciones
 window.onload = function(){
     cargaImagenes();
     queEmpieseJuego();
     bienvenido();
 }
 
-
+//esta función hace funcionar el reloj desde que se carga la página
 function carga(){
     contador_m=0;
     contador_s=0;
@@ -168,12 +169,12 @@ function carga(){
 }
 var cronometro;
 
-function detener(){
+function detener(){ //funcion que detiene el crono
     clearInterval(cronometro);
 
 }
 
 function bienvenido(){
-    alert("Hola, Bienvenid@ a Angel's Frends Card Game \n juega y gana un choped" )
+    
     carga();
 }
