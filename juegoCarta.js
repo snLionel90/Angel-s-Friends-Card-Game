@@ -36,7 +36,7 @@ function mostrarTablero(){
             salida += "\n<tr>"
         }
         salida += '<td id="carta_'+ i + '"><a onclick="return false" onmousedown="mostrar(' +i + ')" onmouseup="comprobar('+i+')" >'+
-               '<img src="' + oJuego.ruta+ "cruz" + oJuego.extension + '"></a></td>'; 
+               '<img src="' + theGame.ruta+ "cruz" + theGame.extension + '"></a></td>'; 
  }
         salida += "</table>";
  
