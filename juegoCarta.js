@@ -12,16 +12,16 @@ theGame.intentos=0; //contador de intentos
 theGame.aciertos=0; //contador de aciertos
 
 //*******area de las variables **********
-var MAX_FICH = theGame.filas * theGame,columnas; //posicionando el tablero
-var Imagenes = new Array(); //un array para almacenar las imagenes 
-var pause = false; //un pequeño respiero para pulsar la segunda carta
+var MAX_FICH = theGame.filas * theGame.columnas; //posicionando el tablero
+var cImagenes = new Array(); //un array para almacenar las imagenes 
+var enPausa = false; //un pequeño respiero para pulsar la segunda carta
 
 //**************FUNCIONES****** 
 //estafuncion carga las imagenes dentro de un array
 function cargaImagenes(){ 
     for (i=0; i<MAX_FICH; i++){
-        Imagenes[i]=new Image(100,100); //tamaño de imagen mostrada en el array
-    Imagenes[i].src = theGame.path+i+theGame.extension;
+        cImagenes[i]=new Image(100,100); //tamaño de imagen mostrada en el array
+    cImagenes[i].src = theGame.path+i+theGame.extension;
     }
 }
 
@@ -36,11 +36,11 @@ function mostrarTablero(){
             salida += "\n<tr>"
         }
         salida += '<td id="carta_'+ i + '"><a onclick="return false" onmousedown="mostrar(' +i + ')" onmouseup="comprobar('+i+')" >'+
-               '<img src="' + theGame.ruta+ "cruz" + theGame.extension + '"></a></td>'; 
- }
+               '<img src="' + theGame.path+ "crux" + theGame.extension + '"></a></td>'; 
+    }
         salida += "</table>";
  
-        document.getElementById("tablero").innerHTML = salida;
+        document.getElementById("tablero").innerHTML= salida;
 
 }
 
@@ -55,17 +55,16 @@ function queEmpieseJuego(){
     theGame.cartas = new Array(MAX_FICH)
     for (i = 0; i<MAX_FICH; i++){
         theGame.cartas[i]=i;
-
     }
 
     //desorecen en el array
     i=100;
     while(i--){
         nUno = azar();
-        nDos = arar();
+        nDos = azar();
         if (nDos != nUno ){ //establecemos el orden
             nTemp = theGame.cartas[nUno]
-            theGame.cartas[nUno] = oJuego.cartas[nDos]
+            theGame.cartas[nUno] = theGame.cartas[nDos]
             theGame.cartas[nDos] = nTemp;
             }
     }
@@ -89,7 +88,7 @@ function mostrar(nFicha){
     if (!enPausa){
         //7a buscar la imagen del array
         if (document.images[nFicha].src.indexOf(theGame.path+"crux"+theGame.extension)!=-1){
-            document.images[nFicha].src=Imagenes[theGame.cartas[nFicha]].src;
+            document.images[nFicha].src=cImagenes[theGame.cartas[nFicha]].src;
             if (theGame.pulsacion[0]==1)
                 theGame.pulsacion[0]=nFicha;
                 else
@@ -143,10 +142,7 @@ window.onload = function(){
     bienvenido();
 }
 
-function bienvenido(){
-    alert("Hola, Bienvenid@ a Angel's Frends Card Game \n juega y gana un choped" )
-    carga();
-}
+
 function carga(){
     contador_m=0;
     contador_s=0;
@@ -156,7 +152,8 @@ function carga(){
 
     cronometro = setInterval(
         function(){
-            if (contador_s==60){
+            if (contador_s==60)
+            {
                 contador_s=0;
                 contador_m++;
                 m.innerHTML=contador_m;
@@ -170,7 +167,13 @@ function carga(){
         ,1000); 
 }
 var cronometro;
+
 function detener(){
     clearInterval(cronometro);
 
+}
+
+function bienvenido(){
+    alert("Hola, Bienvenid@ a Angel's Frends Card Game \n juega y gana un choped" )
+    carga();
 }
