@@ -1,0 +1,78 @@
+/*curpo*/
+body{
+    font-family: 'Courier New', Courier, monospace,Sans,helvetica,arial,verdana;
+    font-size: 15px;
+    margin-left: 400px;
+    background-color: black;
+}
+
+/*/*posicion del contenido donnde se mostrarn la imagenes*/
+#contenido{
+    position: relative;
+}
+
+#adicional{
+    position: absolute;
+    margin-top: 15px;
+    margin-left: 400px;
+    font-size: 15px;
+    left: 0px;
+    color: #666;
+    font-weight: bold;
+}
+
+h1{
+    text-align: right;
+    width: 460px;
+    font-size: 20px;
+    font-weight: bold;
+    color: darkolivegreen;
+}
+h1 strong{
+    font-size: 48px;
+}
+
+/* CCS para el tablero y sus tablas */
+#tablero table{
+    border: 2px, solid #9C9CB1;
+    padding: 4px 8px;
+
+}
+/*tabla dentro del div con id tablero*/
+#tablero tr, #tablero td{
+    padding: 0;
+    margin: 0;
+
+}
+
+/**tablero de las imagenes*/
+#tablero td img{
+    margin: 4px;
+    padding: 0;
+    height: 100px;
+    width: 100px;
+    border: none;
+}
+/*cuando se pasa por encima con el ratton*/
+#tablero td img:hover{
+    margin: 4px;
+    padding: 0;
+    height: 98px;
+    width: 98px;
+    border: 1px solid red;
+
+}
+
+/*datos ee los contadores*/
+#datos dt{
+    font-weight: bold;
+}
+
+#datos dd{
+    display: block;
+    width: 42px;
+    border: 1px solid #777;
+    padding: 2px;
+    text-align: right;
+    margin: 2px 0 12px 36px;
+}
