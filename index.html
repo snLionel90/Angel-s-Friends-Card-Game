@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>AF Card Game</title>
+        <meta charset="UTF-8">
+        <script sr="juegoCarta.js" type="text/javascript"></script> <!-- invocamos el fichero con el script-->
+        <link rel="styleSheet" href = "styles.css" type="text/css">
+    </head>
+    <body>
+        <div id="pagina"> <!-- marco para la pagina-->
+            <div id = "marca">
+                <h1>Angel's Friends Card Game</h1>
+            </div>
+            <div id="contenido"> <!-- div para el contenido de la pagina-->
+                <div id="tablero">Cagando...</div> <!-- div para eltablero con la imagenes-->
+                <form name="data" id="data" action="index.html">
+                    <div id="fichas"></div>
+                    <dl>
+                        <dt>Intentos</dt> <!--contador de intentos-->
+                        <dd id="movimientos"></dd>
+                        <dt>Acertados</dt> <!--contador de aciertos-->
+                        <dd id="aciertos"></dd>
+                        <dt>Tiempo</dt> <!--contador tempo-->
+                        <dd id="cronometro"><span id="minutos">0</span><span id ="segundos">0</span></dd>
+                    </dl>
+                    <p><input type="submit" value="reiniciar"></p> <!--boton reinicio-->
+                </form>
+            </div> <!--aqui se cierra el div del contenido-->
+        </div>
+    </body>
+</html>
