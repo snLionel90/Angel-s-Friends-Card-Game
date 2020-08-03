@@ -1,180 +1,194 @@
-// En este script se estableceran las variables para el juego de cartas
+var directorio = "images" //directorio o ruta a donde se guardan las imágenes
+var numImagenes = 16 //cantidad de imágenes que existan em el directorio
+perder = 3333320 //Numero de intentos a los que se pierde
 
-var theGame = new Object(); //creando un numevo objeto
+//***No tocar el código a partir de aquí
+var nums=new Array()
+var cant = 8
+var acrtos = 0
+var intentos = 0
+gana = false
+perdio = false
+function numero(){
+var num = Math.ceil(Math.random() *numImagenes);
+return num}
 
-//lo instanciamos
-theGame.columnas = 4; //asignamos el numero de columnas
-theGame.filas = 4; //asignamos el numero de filas
-theGame.extension=".png"; //una extension para todas las imagenes
-theGame.path = "images/"; //directorio donde estan las imagenes
-theGame.pulsacion = new Array(0,0) //pulsaciones para las parejas en forma de Array
-theGame.intentos=0; //contador de intentos
-theGame.aciertos=0; //contador de aciertos
+nums[0] = numero()
 
-//*******area de las variables **********
-var MAX_FICH = theGame.filas * theGame.columnas; //posicionando el tablero
-var cImagenes = new Array(); //un array para almacenar las imagenes 
-var enPausa = false; //un pequeño respiero para pulsar la segunda carta
-
-//**************FUNCIONES****** 
-//estafuncion carga las imagenes dentro de un array
-function cargaImagenes(){ 
-    for (i=0; i<MAX_FICH; i++){
-        cImagenes[i]=new Image(100,100); //tamaño de imagen mostrada en el array
-    cImagenes[i].src = theGame.path+i+theGame.extension;
-    }
+for(m=1;m<=(cant-1);m++)
+{
+	nums[m] =  comprueba(numero())
 }
 
-//Funcione de mostar un tablero
-function mostrarTablero(){
-    document.getElementById("movimientos").innerHTML = theGame.intentos;
-    document.getElementById("aciertos").innerHTML = theGame.aciertos;
+function comprueba(nume)
+{
+var repe = false
+for(t=0;t<nums.length;t++)
+	{
+	if(nume == nums[t])
+		{
+		repe = true; break
+		}
+	}
+if(repe == false)
+	{
+	return nume
+	}
+else
+	{
+	m--
+	comprueba(numero())
+	}
+}
+var lista = new Array()
+largo = nums.length
+for(w = 0; w < largo ; w++)
+	{
+	nums[largo + w] = nums[w]
+	}
 
-    var salida = "<table>\n";
-    for (i = 0; i<MAX_FICH; i++){
-        if (i % theGame.columnas==0){
-            salida += "\n<tr>"
-        }
-        salida += '<td id="carta_'+ i + '"><a onclick="return false" onmousedown="mostrar(' +i + ')" onmouseup="comprobar('+i+')" >'+
-               '<img src="' + theGame.path+ "crux" + theGame.extension + '"></a></td>'; 
-    }
-        salida += "</table>";
- 
-        document.getElementById("tablero").innerHTML= salida;
-
+var numero = 0
+function comprueba2(numerito)
+{
+if(nums[numerito] == null)
+	{
+	if(numerito == nums.length-1)
+		{
+		numerito = 0
+		numerito2 = numerito
+		comprueba2(numerito2)
+		}
+	else
+		{
+		numerito += 1
+		numerito2 = numerito
+		comprueba2(numerito2)
+		}
+	}
+else{
+numero = numerito
+return numerito
+	}
 }
 
-//funcion empleada para empezar y estableser los parametros antes de mostar el tablero
-function queEmpieseJuego(){
-    var nUno, nDos, nTemp;
-    theGame.pulsacion = new Array(-1,-1);
-    theGame.intentos=0;
-    theGame.aciertos=0;
+for(q=0; q < nums.length; q++)
+	{
+	if(q == nums.length-1)
+		{
+		for(e=0;e < nums.length; e++)
+			{
+			if(nums[e] != null)
+				{
+				lista[q] = nums[e];
+				break
+				}
+			}
+		}
+		else
+			{
+			numerin = Math.floor(Math.random() * nums.length-1)
+			numerin = comprueba2(numerin)
+			lista[q] = nums[numero]
+			nums[numero] = null
+			}
+	}
+	
+var imagenes = new Array()
 
-    //ordeeeen en el array
-    theGame.cartas = new Array(MAX_FICH)
-    for (i = 0; i<MAX_FICH; i++){
-        theGame.cartas[i]=i;
-    }
+for(n=0;n<lista.length;n++)
+	{
+	imagenes[n] = new Image()
+	imagencilla = eval('"' + lista[n] + '.png"')
+	imagenes[n].src = directorio + "/" + imagencilla
+	}
 
-    //desorecen en el array
-    i=100;
-    while(i--){
-        nUno = azar();
-        nDos = azar();
-        if (nDos != nUno ){ //establecemos el orden
-            nTemp = theGame.cartas[nUno];
-            theGame.cartas[nUno] = theGame.cartas[nDos];
-            theGame.cartas[nDos] = nTemp;
-            }
-    }
 
-    mostrarTablero(); //mostramos el tablero gracias a la función mostrarTablero
+s = 1
+
+document.writeln ('<table align="center">')
+document.writeln ('<tr align="center">')
+for(p=1; p<=nums.length;p++)
+	{
+	if(s > 4){document.write ('</tr><tr>');s=1}
+	document.write ('<td id="' + lista[p-1] + '"><a href="#" onclick="this.blur();return false">')
+	document.write ('<img id="' + lista[p-1] + '" onclick="gira(this,this.id)" src="' + directorio + '/cruz.png" width="71" height="81">')
+	document.writeln ('</a></td>')
+	s++
+	}
+document.writeln ('</table>')
+cont = 0 
+var gi1,gi2
+function gira(cual,carta)
+{
+if(perdio == true)
+	{
+	document.formu.visor.value="Juego Finalizado"
+	setTimeout('document.location.reload()',2000)
+	}
+if(cual != gi1){cont++}
+if(cont < 3)
+	{
+	cual.src = directorio + "/" + carta + ".png"
+	if(cont==1){gi1 = cual;}
+	else{gi2 = cual; comp()}
+	}
+	
 }
-
-
-// funciones varias para el juego
-function azar(){  
-    return Math.floor(Math.random()*MAX_FICH); //cola las imagenes de forma aleatoria
-//donde le sale de los scripts
-   }
-
-//función para comprobar si se han pulsado una o dos cartas
-function soloImpar(n){
-    return (n % 2 == 0 ? n : n - 1);
-   }
-
-function mostrar(nFicha){
-    if (!enPausa){
-        //7a buscar la imagen del array
-        if (document.images[nFicha].src.indexOf(theGame.path+"crux"+theGame.extension)!=-1){
-            document.images[nFicha].src=cImagenes[theGame.cartas[nFicha]].src;
-            if (theGame.pulsacion[0]==1)
-                theGame.pulsacion[0]=nFicha;
-                else
-                theGame.pulsacion[1]=nFicha;       
-            }   else{
-                alert("Pulsa la imagen sin emparejarr");
-            }
-        }
-}
-
-//funcion que la da la vuelta al as cartas
-
-function sinPausa(){
-    enPausa=false;
-    document.images[theGame.pulsacion[0]].src=theGame.path+"crux"+theGame.extension;
-    document.images[theGame.pulsacion[1]].src=theGame.path+"crux"+theGame.extension;
-
-    //7volviendo a las teclas
-    theGame.pulsacion[0]= -1;
-    theGame.pulsacion[1]= -1;
-}
-
-function comprobacion (){
-    if (enPausa || theGame.pulsacion[1]==-1){
-        return; //comprobar dos teclás
-        theGame.intentos++; //uno mas pal contador
-    }
-    
-
-    if(soloImpar(theGame.cartas[theGame.pulsacion[0]])== soloImpar(theGame.cartas[theGame.pulsacion[1]])){
-        theGame.aciertos++; //añadimos un acierto al contador
-        if (theGame.aciertos*2==MAX_FICH){ //si se acierta todas las fichas el juego acaba
-            detener() //parando el cronometro
-
-            //y muestra un mensaje final de juego
-            alert("Enhorabuena has ganado y has tardado" +contador_m+ ":" +(contador_s-1));
-        }
-        theGame.pulsacion[0]=-1;
-        theGame.pulsacion[1]=-1;
-    }else{
-        enPausa=true;
-        setTimeout(sinPausa,1000);
-    }
-//muestramos loz contadores hoygan
-    document.getElementById("movimientos").innerHTML=theGame.intentos;
-    document.getElementById("aciertos").innerHTML=theGame.aciertos;
-}
-//Evento que al cargarse la ventana carga las funciones
-window.onload = function(){
-    cargaImagenes();
-    queEmpieseJuego();
-    bienvenido();
-}
-
-//esta función hace funcionar el reloj desde que se carga la página
-function carga(){
-    contador_m=0;
-    contador_s=0;
-
-    s = document.getElementById("segundos");
-    m =document.getElementById("minutos");
-
-    cronometro = setInterval(
-        function(){
-            if (contador_s==60)
-            {
-                contador_s=0;
-                contador_m++;
-                m.innerHTML=contador_m;
-                if (contador_m==60){
-                    contador_m=0;
-                }
-            }
-            s.innerHTML=contador_s;
-            contador_s++;
-        }
-        ,1000); 
-}
-var cronometro;
-
-function detener(){ //funcion que detiene el crono
-    clearInterval(cronometro);
+function comp()
+{
+if(gi1.src == gi2.src)
+	{
+	setTimeout("gi1.style.borderColor='red'",200)
+	setTimeout("gi2.style.borderColor='red'",400)
+	gi1.onclick=null;gi2.onclick=null
+	intentos++
+	document.formu.visor.value = "Intentos: " + intentos
+	acrtos++
+	if(acrtos == cant) 
+		{
+		finJuego('gana')
+		gana = true
+		}
+	
+	cont = 0
+	}
+else 
+	{
+	setTimeout("restaura()",1500)
+	
+	}
 
 }
-
-function bienvenido(){
-    
-    carga();
+function restaura()
+	{
+	gi1.src = directorio + "/" + "cruz.png" ; gi1 =""
+	setTimeout('gi2.src = directorio + "/cruz.png";gi2=""',200)
+	cont = 0
+	intentos ++
+	document.formu.visor.value = "Intentos: " + intentos
+	if(intentos >= perder)
+		{
+		cont = 4
+		finJuego('pierde')
+		perdio = true
+		}
+	}
+function finJuego(cual)
+{
+if(navigator.appName == "Netscape")
+	{
+	anchoVentana = window.innerWidth
+	altoVentana = window.innerHeight
+	}
+else
+	{
+	anchoVentana = document.body.scrollWidth
+	altoVentana = document.body.scrollHeight
+	}
+document.getElementById('gana').style.top=(altoVentana -100)/2
+document.getElementById('gana').style.left =(anchoVentana -200)/2
+if(cual == 'pierde'){document.getElementById('mensaje').innerHTML = 'Agotaste tus ' + perder + ' intentos<br> Perdiste  :-(';cont='perdio'}
+document.getElementById('gana').style.visibility = 'visible'
 }
+function cierra()
+{document.getElementById('gana').style.visibility='hidden'}

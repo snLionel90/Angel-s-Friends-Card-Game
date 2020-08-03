@@ -6,27 +6,19 @@
         <script src="juegoCarta.js" type="text/javascript"></script> <!-- invocamos el fichero con el script-->
        
     </head>
-    <center><body background=" images/fondo.jpg" >
+    <center><body background=" images/fondo.jpg" onload="document.formu.visor.value = 'Intentos: 0';">
         <div id="pagina"> <!-- marco para la pagina-->
-            <div id = "marca">
+            <div id = "contenido">
                 <h1>Angel's Friends Card Game</h1>
                 <h3>"Hola, Bienvenid@ a Angel's Frends Card Game. juega y gana un porro"</h3>
             </div>
-            <div id="contenido"> <!-- div para el contenido de la pagina-->
-                <div id="tablero">Cagando...</div> <!-- div para eltablero con la imagenes-->
-                <form name="data" id="data" action="index.html">
-                    <div id="fichas"></div>
-                    <dl>
-                        <dt>Intentos</dt> <!--contador de intentos-->
-                        <dd id="movimientos"></dd>
-                        <dt>Acertados</dt> <!--contador de aciertos-->
-                        <dd id="aciertos"></dd>
-                        <dt>Tiempo</dt> <!--contador tempo-->
-                        <dd id="cronometro"><span id="minutos">0:</span><span id ="segundos">00</span></dd>
-                    </dl>
-                    <p><input type="submit" value="reiniciar"></p> <!--boton reinicio-->
-                </form>
-            </div> <!--aqui se cierra el div del contenido-->
+            
+                <div align="center">
+                  <form name="formu" style="border:0">
+                    <input name="visor" type="text" class="formato" size="13" value="Intentos: 0" >
+                  </form>
+                  <a href="javascript:location.reload()"><strong><font size="12">hUgAr oTrA bEs HoYgAn</font></strong></a> 
+                </div>
 
             <div id="adicional">2020 ©snLionel90, Juego creado para el entretenimiento (extreñimiento)</div>
         </div>  

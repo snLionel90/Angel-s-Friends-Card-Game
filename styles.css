@@ -4,45 +4,15 @@
 h1{
     font-family: 'Courier New', Courier, monospace;
     font-size: 25px;
-    color: blanchedalmond;
+    color: rgb(56, 37, 9);
+    position: relative;
 }
 h3{
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 15px;
     color: chartreuse;
+    position: top;
 }
 #contenido{
     position: relative;
-}
-
-/* CCS para el tablero y sus tablas */
-#tablero table{
-    border: 2px, solid black;;
-    padding: 4px 8px;
-    border:2px olive;
-
-}
-/*tabla dentro del div con id tablero*/
-#tablero tr, #tablero td{
-    padding: 0;
-    margin: 0;
-    
-}
-
-/**tablero de las imagenes*/
-#tablero td img{
-    margin: 4px;
-    padding: 0;
-    height: 100px;
-    width: 100px;
-    border: none;
-}
-/*cuando se pasa por encima con el ratton*/
-#tablero td img:hover{
-    margin: 4px;
-    padding: 0;
-    height: 98px;
-    width: 98px;
-    border: 1px solid red;
-
 }
