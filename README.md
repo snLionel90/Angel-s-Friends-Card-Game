@@ -1,2 +1,2 @@
-# Angel-s-Friends-Card-Game
+# UUU-Card-Game
 Enjoy playing memory card game
